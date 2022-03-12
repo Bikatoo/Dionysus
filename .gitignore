@@ -1,5 +1,4 @@
 HELP.md
-secret.properties
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -32,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### secret config ###
+/src/main/resources/secret.properties
