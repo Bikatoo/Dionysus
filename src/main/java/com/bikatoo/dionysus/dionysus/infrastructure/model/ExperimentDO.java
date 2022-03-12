@@ -6,12 +6,12 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.bikatoo.dionysus.dionysus.interfaces.experiment.ExperimentStatus;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Data
 @TableName(value = "experiment")
-public class ExperimentDO {
+public class ExperimentDO implements Serializable {
 
     @TableId(value = "experiment_id", type = IdType.AUTO)
     private Long experimentId;
@@ -19,8 +19,8 @@ public class ExperimentDO {
     private String name;
     private String description;
     private ExperimentStatus status;
-    private Set<String> blacklist;
-    private Set<String> whitelist;
+    private String blacklist;
+    private String whitelist;
     private BigDecimal percentage;
     private String version;
 }

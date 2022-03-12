@@ -1,11 +1,11 @@
-package com.bikatoo.dionysus.dionysus.service.serviceparams;
+package com.bikatoo.dionysus.dionysus.interfaces.req;
 
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
-public class CreateExperiment {
+public class ExperimentCreateReq {
 
     private String name;
     private String description;

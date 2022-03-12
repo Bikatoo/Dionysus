@@ -2,6 +2,8 @@ package com.bikatoo.dionysus.dionysus.event.experiment;
 
 import com.bikatoo.dionysus.dionysus.event.DomainUpdate;
 import com.bikatoo.dionysus.dionysus.infrastructure.model.ExperimentDO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
@@ -17,10 +19,13 @@ public class ExperimentEventsPublisher implements ExperimentEvents {
 
     @Override
     public void publish(ExperimentEvent event) {
-
         event.setEventId(UUID.randomUUID());
         event.setTriggerAt(new Date());
-        // todo mq
+        try {
+            rabbitTemplate.convertAndSend("dionysus.experiment.exchange", "experiment.created", new ObjectMapper().writeValueAsString(event));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

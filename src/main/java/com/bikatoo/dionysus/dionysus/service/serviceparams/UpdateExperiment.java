@@ -4,7 +4,6 @@ import com.bikatoo.dionysus.dionysus.interfaces.experiment.ExperimentStatus;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Data
 public class UpdateExperiment {
@@ -12,8 +11,8 @@ public class UpdateExperiment {
     private String name;
     private String description;
     private ExperimentStatus status;
-    private Set<String> blacklist;
-    private Set<String> whitelist;
+    private String blacklist;
+    private String whitelist;
     private BigDecimal percentage;
     private String version;
 }

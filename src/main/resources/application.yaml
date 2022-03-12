@@ -10,7 +10,6 @@ spring:
     username: ${jdbc.user}
     password: ${jdbc.password}
     url: ${jdbc.url}
-
   rabbitmq:
     host: ${rabbitmq.host}
     username: ${rabbitmq.username}

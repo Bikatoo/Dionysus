@@ -1,8 +1,10 @@
 package com.bikatoo.dionysus.dionysus.service.impl;
 
+import com.bikatoo.dionysus.dionysus.event.experiment.ExperimentEvents;
 import com.bikatoo.dionysus.dionysus.infrastructure.exception.GlobalException;
 import com.bikatoo.dionysus.dionysus.infrastructure.mapper.ExperimentMapper;
 import com.bikatoo.dionysus.dionysus.infrastructure.model.ExperimentDO;
+import com.bikatoo.dionysus.dionysus.interfaces.experiment.ExperimentStatus;
 import com.bikatoo.dionysus.dionysus.service.ExperimentService;
 import com.bikatoo.dionysus.dionysus.service.serviceparams.CreateExperiment;
 import com.bikatoo.dionysus.dionysus.service.serviceparams.UpdateExperiment;
@@ -21,13 +23,18 @@ public class ExperimentServiceImpl implements ExperimentService {
     @Resource
     private ExperimentMapper experimentMapper;
 
+    @Resource
+    private ExperimentEvents experimentEvents;
+
     @Override
     public Long create(CreateExperiment create) {
 
         ExperimentDO data = new ExperimentDO();
         BeanUtils.copyProperties(create, data);
+        data.setStatus(ExperimentStatus.CREATED);
         experimentMapper.insert(data);
 
+        experimentEvents.onCreated(data.getExperimentId(), data);
         return data.getExperimentId();
     }
 
