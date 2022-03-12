@@ -1,4 +1,4 @@
-package com.bikatoo.dionysus.dionysus.utils;
+package com.bikatoo.dionysus.dionysus.infrastructure.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;

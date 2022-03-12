@@ -1,6 +1,6 @@
 package com.bikatoo.dionysus.dionysus.interfaces.request;
 
-import com.bikatoo.dionysus.dionysus.exception.GlobalException;
+import com.bikatoo.dionysus.dionysus.infrastructure.exception.GlobalException;
 import com.bikatoo.dionysus.dionysus.interfaces.terminal.Terminals;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -16,7 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.*;
 
-import static com.bikatoo.dionysus.dionysus.utils.PreconditionUtils.checkConditionAndThrow;
+import static com.bikatoo.dionysus.dionysus.infrastructure.utils.PreconditionUtils.checkConditionAndThrow;
 
 @Slf4j
 public final class RequestParser {
@@ -24,10 +24,14 @@ public final class RequestParser {
     // 默认的请求必选入参
     private static final String[] default_required_arr = new String[] {"terminal", "uuid"};
 
-    // 优先加载配置中的必选入参，未配置则使用 default_required_arr
+    // 加载配置中的附加必选入参，未配置则使用 default_required_arr
     private static final String[] required_arr = loadRequired();
 
-    private static final Set<String> required = new HashSet<>(Arrays.asList(required_arr));
+    private static final Set<String> required = new HashSet<>(Arrays.asList(default_required_arr));
+
+    static {
+        required.addAll(Arrays.asList(required_arr));
+    }
 
     /**
      * 加载配置中的必选字段

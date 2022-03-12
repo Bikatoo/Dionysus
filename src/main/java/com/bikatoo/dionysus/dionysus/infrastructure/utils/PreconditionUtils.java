@@ -1,6 +1,6 @@
-package com.bikatoo.dionysus.dionysus.utils;
+package com.bikatoo.dionysus.dionysus.infrastructure.utils;
 
-import com.bikatoo.dionysus.dionysus.exception.GlobalException;
+import com.bikatoo.dionysus.dionysus.infrastructure.exception.GlobalException;
 import org.springframework.lang.NonNull;
 
 public class PreconditionUtils {

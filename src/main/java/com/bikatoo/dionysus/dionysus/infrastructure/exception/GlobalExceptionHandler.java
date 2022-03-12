@@ -1,4 +1,4 @@
-package com.bikatoo.dionysus.dionysus.exception;
+package com.bikatoo.dionysus.dionysus.infrastructure.exception;
 
 import com.bikatoo.dionysus.dionysus.interfaces.DTO.CommonResult;
 import org.springframework.lang.NonNull;

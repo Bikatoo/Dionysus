@@ -1,2 +1,6 @@
+# 系统启动时加载的配置项
+
+# 请求相关的配置
 request:
-  required-parameters: terminal, uuuid
+  # 附加必选项入参
+  required-parameters: terminal, uuid

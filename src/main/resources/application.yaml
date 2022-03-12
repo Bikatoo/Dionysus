@@ -3,3 +3,20 @@ server:
   servlet:
     context-path: /dionysus-app
 
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${jdbc.user}
+    password: ${jdbc.password}
+    url: ${jdbc.url}
+
+  rabbitmq:
+    host: ${rabbitmq.host}
+    username: ${rabbitmq.username}
+    password: ${rabbitmq.password}
+    port: 5672
+    virtual-host: /
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml      #配置mapper路径

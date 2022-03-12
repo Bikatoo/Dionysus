@@ -1,6 +1,6 @@
 package com.bikatoo.dionysus.dionysus.interfaces.terminal;
 
-import com.bikatoo.dionysus.dionysus.utils.ClassUtils;
+import com.bikatoo.dionysus.dionysus.infrastructure.utils.ClassUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Objects;
