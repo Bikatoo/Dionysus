@@ -12,5 +12,4 @@ public class CreateExperiment {
     private String blacklist;
     private String whitelist;
     private BigDecimal percentage;
-    private String version;
 }

@@ -9,5 +9,5 @@ public interface ExperimentService {
 
     void delete(Long experimentId);
 
-    void update(UpdateExperiment update);
+    void update(Long experimentId,  UpdateExperiment update);
 }

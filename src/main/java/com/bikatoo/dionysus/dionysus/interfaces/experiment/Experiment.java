@@ -16,5 +16,5 @@ public class Experiment {
     private String blacklist;
     private String whitelist;
     private BigDecimal percentage;
-    private String version;
+    private ExperimentVersion version;
 }

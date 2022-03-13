@@ -1,6 +1,5 @@
 package com.bikatoo.dionysus.dionysus.infrastructure.amqp.listener;
 
-import com.bikatoo.dionysus.dionysus.event.experiment.ExperimentCreatedEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
