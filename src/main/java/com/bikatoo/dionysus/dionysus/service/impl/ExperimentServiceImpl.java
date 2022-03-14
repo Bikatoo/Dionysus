@@ -5,7 +5,7 @@ import com.bikatoo.dionysus.dionysus.event.experiment.ExperimentEvents;
 import com.bikatoo.dionysus.dionysus.infrastructure.exception.GlobalException;
 import com.bikatoo.dionysus.dionysus.infrastructure.mapper.ExperimentMapper;
 import com.bikatoo.dionysus.dionysus.infrastructure.model.ExperimentDO;
-import com.bikatoo.dionysus.dionysus.interfaces.experiment.ExperimentStatus;
+import com.bikatoo.dionysus.dionysus.interfaces.experiment.status.ExperimentStateEnum;
 import com.bikatoo.dionysus.dionysus.interfaces.experiment.ExperimentVersion;
 import com.bikatoo.dionysus.dionysus.service.ExperimentService;
 import com.bikatoo.dionysus.dionysus.service.serviceparams.CreateExperiment;
@@ -33,7 +33,7 @@ public class ExperimentServiceImpl implements ExperimentService {
 
         ExperimentDO data = new ExperimentDO();
         BeanUtils.copyProperties(create, data);
-        data.setStatus(ExperimentStatus.CREATED);
+        data.setStatus(ExperimentStateEnum.CREATED);
         data.setVersion(ExperimentVersion.DEFAULT_VERSION.toString());
         experimentMapper.insert(data);
 
@@ -66,5 +66,24 @@ public class ExperimentServiceImpl implements ExperimentService {
         experimentMapper.update(after, w -> w.eq(ExperimentDO::getExperimentId, experimentId));
 
         experimentEvents.onUpdated(experimentId, new DomainUpdate<>(before, after));
+    }
+
+    @Override
+    public void switchToRunning(Long experimentId) {
+        ExperimentDO experiment = experimentMapper.selectOne(w -> w.eq(ExperimentDO::getExperimentId, experimentId));
+        checkNonNullAndThrow(experiment, new GlobalException("实验不存在", "实验不存在"));
+
+
+
+    }
+
+    @Override
+    public void switchToSuspend(Long experimentId) {
+
+    }
+
+    @Override
+    public void switchToClosed(Long experimentId) {
+
     }
 }

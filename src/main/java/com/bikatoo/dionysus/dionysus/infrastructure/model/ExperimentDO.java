@@ -3,7 +3,7 @@ package com.bikatoo.dionysus.dionysus.infrastructure.model;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.bikatoo.dionysus.dionysus.interfaces.experiment.ExperimentStatus;
+import com.bikatoo.dionysus.dionysus.interfaces.experiment.status.ExperimentStateEnum;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -18,7 +18,7 @@ public class ExperimentDO implements Serializable {
 
     private String name;
     private String description;
-    private ExperimentStatus status;
+    private ExperimentStateEnum status;
     private String blacklist;
     private String whitelist;
     private BigDecimal percentage;

@@ -4,6 +4,7 @@ import com.bikatoo.dionysus.dionysus.event.DomainUpdate;
 import com.bikatoo.dionysus.dionysus.infrastructure.model.ExperimentDO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Component
+@Log4j2
 public class ExperimentEventsPublisher implements ExperimentEvents {
 
     @Resource
@@ -24,7 +26,7 @@ public class ExperimentEventsPublisher implements ExperimentEvents {
         try {
             rabbitTemplate.convertAndSend("dionysus.experiment.exchange", "experiment.created", new ObjectMapper().writeValueAsString(event));
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            log.error("event 序列化失败");
         }
     }
 

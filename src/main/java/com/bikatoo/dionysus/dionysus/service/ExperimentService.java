@@ -10,4 +10,10 @@ public interface ExperimentService {
     void delete(Long experimentId);
 
     void update(Long experimentId,  UpdateExperiment update);
+
+    void switchToRunning(Long experimentId);
+
+    void switchToSuspend(Long experimentId);
+
+    void switchToClosed(Long experimentId);
 }
