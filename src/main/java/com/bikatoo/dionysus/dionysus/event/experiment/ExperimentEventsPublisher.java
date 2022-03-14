@@ -2,6 +2,7 @@ package com.bikatoo.dionysus.dionysus.event.experiment;
 
 import com.bikatoo.dionysus.dionysus.event.DomainUpdate;
 import com.bikatoo.dionysus.dionysus.infrastructure.model.ExperimentDO;
+import com.bikatoo.dionysus.dionysus.interfaces.experiment.status.ExperimentStateEnum;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
@@ -52,6 +53,14 @@ public class ExperimentEventsPublisher implements ExperimentEvents {
     public void onDeleted(Long experimentId) {
         ExperimentDeletedEvent event = new ExperimentDeletedEvent();
         event.setExperimentId(experimentId);
+        publish(event);
+    }
+
+    @Override
+    public void onSwitchedState(Long experimentId, DomainUpdate<ExperimentStateEnum> update) {
+        ExperimentStateSwitchedEvent event = new ExperimentStateSwitchedEvent();
+        event.setExperimentId(experimentId);
+        event.setUpdate(update);
         publish(event);
     }
 }

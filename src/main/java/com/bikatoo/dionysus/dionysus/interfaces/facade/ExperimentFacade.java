@@ -41,4 +41,23 @@ public class ExperimentFacade {
         return CommonResult.ok();
     }
 
+    @PutMapping("/experiment/{experimentId}/state/running")
+    public CommonResult<Void> switchToRunning(@PathVariable Long experimentId) {
+        experimentService.switchToRunning(experimentId);
+        return CommonResult.ok();
+    }
+
+    @PutMapping("/experiment/{experimentId}/state/suspend")
+    public CommonResult<Void> switchToSuspend(@PathVariable Long experimentId) {
+        experimentService.switchToSuspend(experimentId);
+        return CommonResult.ok();
+    }
+
+    @PutMapping("/experiment/{experimentId}/state/closed")
+    public CommonResult<Void> switchToClosed(@PathVariable Long experimentId) {
+        experimentService.switchToClosed(experimentId);
+        return CommonResult.ok();
+    }
+
+
 }

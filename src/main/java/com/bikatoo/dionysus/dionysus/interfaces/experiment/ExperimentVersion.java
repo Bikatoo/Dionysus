@@ -1,9 +1,12 @@
 package com.bikatoo.dionysus.dionysus.interfaces.experiment;
 
+import com.bikatoo.dionysus.dionysus.infrastructure.exception.GlobalException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import static com.bikatoo.dionysus.dionysus.infrastructure.utils.PreconditionUtils.checkConditionAndThrow;
 
 @Data
 @AllArgsConstructor
@@ -22,5 +25,15 @@ public class ExperimentVersion {
     @Override
     public String toString() {
         return first + "." + last;
+    }
+
+    public static ExperimentVersion valueOf(String versionStr) {
+
+        if (versionStr == null || "".equals(versionStr)) {
+            return null;
+        }
+        String[] versionArr = versionStr.split("\\.");
+        checkConditionAndThrow(2 == versionArr.length, new GlobalException("invalid version string [" + versionStr + "]" ));
+        return new ExperimentVersion(Integer.parseInt(versionArr[0]), Integer.parseInt(versionArr[1]));
     }
 }

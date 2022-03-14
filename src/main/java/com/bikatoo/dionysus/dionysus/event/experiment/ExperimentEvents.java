@@ -3,6 +3,7 @@ package com.bikatoo.dionysus.dionysus.event.experiment;
 import com.bikatoo.dionysus.dionysus.event.DomainUpdate;
 import com.bikatoo.dionysus.dionysus.event.Events;
 import com.bikatoo.dionysus.dionysus.infrastructure.model.ExperimentDO;
+import com.bikatoo.dionysus.dionysus.interfaces.experiment.status.ExperimentStateEnum;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface ExperimentEvents extends Events<ExperimentEvent> {
@@ -14,5 +15,7 @@ public interface ExperimentEvents extends Events<ExperimentEvent> {
     void onUpdated(Long experimentId, DomainUpdate<ExperimentDO> update);
 
     void onDeleted(Long experimentId);
+
+    void onSwitchedState(Long experimentId, DomainUpdate<ExperimentStateEnum> update);
 
 }

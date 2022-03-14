@@ -9,4 +9,5 @@ public enum ExperimentStateEnum {
     SUSPEND,
 
     CLOSED
+
 }
